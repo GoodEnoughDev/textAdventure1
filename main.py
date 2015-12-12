@@ -1,4 +1,4 @@
-from textAdventureClasses import Player
+from classes import Player
 
 print("You are about to embark on an adventure!\n"
       "In text!\n\n")
