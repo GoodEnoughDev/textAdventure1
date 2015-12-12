@@ -30,8 +30,8 @@ class Map:
         self.size = list()
 
 class Terrain:
-    def __init__(self):
-        self.type = str()
+    def __init__(self,type):
+        self.type = type
         self.hidden = bool()
         self.treasure = Item
 

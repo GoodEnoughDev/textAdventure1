@@ -1,8 +1,9 @@
 import os
 import time
-
+import random
 from classes import *
 
+terrainTypes = ["forrest","plain","road","dessert","mountain"]
 
 def clearConsole():
     os.system('clear')
@@ -21,9 +22,10 @@ def intro():
 
 
 def playerSetup():
-    player1 = Player()
-    player1.name = input("What is your name? ")
-    player1.weapon = input(player1.name + ", what is your weapon of choice? ")
+    player = Player()
+    player.name = input("What is your name? ")
+    player.weapon = input(player1.name + ", what is your weapon of choice? ")
+    return player
 
 def initializeWorld(size):
     worldMap = Map()
@@ -31,6 +33,21 @@ def initializeWorld(size):
         worldMap.size.append([])
         for i2 in range(int(size)*10):
             worldMap.size[i].append(Terrain)
-    print(worldMap.size[1])
+    return worldMap
 
 # TODO: figure out how to determine terrain attributes
+
+def realityLoop(player,worldMap):
+    firstRun = True
+    exit = False
+
+    if firstRun == True:
+        player.positionx = 10
+        player.positiony = 10
+    else:
+        while exit == False:
+            determineTerrain(player,worldMap)
+            print("You are in a " + worldMap.size[player.positionx][player.positiony].type)
+
+def determineTerrain(player,worldMap):
+    if worldMap.size[player.positionx][player.positiony].type =="":
