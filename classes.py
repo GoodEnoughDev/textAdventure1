@@ -1,7 +1,7 @@
 
 class Player:
-    def __init__(self,name):
-        self.name = name
+    def __init__(self):
+        self.name = str()
         self.weapon = str()
         self.items = []
 
