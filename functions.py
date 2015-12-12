@@ -24,4 +24,3 @@ def playerSetup():
     player1 = Player()
     player1.name = input("What is your name? ")
     player1.weapon = input(player1.name + ", what is your weapon of choice? ")
-    input("")
