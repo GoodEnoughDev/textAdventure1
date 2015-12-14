@@ -1,19 +1,22 @@
 ############################related to people############################
 class Person(object):
+
     def __init__(self):
         self.name = str
         self.description = str
         self.isAlive = bool
         self.position = list
+        self.attacks = list
+        self.items = list
         self.hp = int
         self.mp = int
         self.strength = int
         self.defense = int
 
+    def takeDamage(self, damage):
+        self.hp -= damage
+
 class Player(Person):
-    def __init__(self):
-        self.positionx = int
-        self.positiony = int
 
     def move(self, direction):
         if direction.upper() == "N" or "NORTH":
@@ -27,23 +30,24 @@ class Player(Person):
         else:
             return 0
 
+
+
 class NPC(Person):
+
     def __init__(self):
         self.messages = list
 
-class Enemy(Person):
-    def __init__(self):
-        self.attacks = list
-
 #############################related to items############################
 
-class Item:
+class Item(object):
+
     def __init__(self):
         self.name = str
         self.description = str
         self.value = int
 
 class Weapon(Item):
+
     def __init__(self):
         self.damage = int
 
@@ -57,4 +61,10 @@ class Terrain:
         self.hidden = bool
         self.treasure = Item
 
+#############################related to attacks############################
+class Attack:
+    def __init__(self):
+        self.name = str
+        self.description = str
+        self.damage = int
 
