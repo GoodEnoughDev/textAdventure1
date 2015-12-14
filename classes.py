@@ -1,38 +1,60 @@
-
-class Player:
+############################related to people############################
+class Person(object):
     def __init__(self):
-        self.name = str()
-        self.weapon = str()
-        self.items = []
-        self.positionx = int()
-        self.positiony = int()
+        self.name = str
+        self.description = str
+        self.isAlive = bool
+        self.position = list
+        self.hp = int
+        self.mp = int
+        self.strength = int
+        self.defense = int
+
+class Player(Person):
+    def __init__(self):
+        self.positionx = int
+        self.positiony = int
 
     def move(self, direction):
         if direction.upper() == "N" or "NORTH":
-            self.positiony +=1
+            self.position[2] +=1
         elif direction.upper() == "S" or "SOUTH":
-            self.positiony -=1
+            self.position[2] -=1
         elif direction.upper() == "E" or "EAST":
-            self.positionx +=1
+            self.position[1] +=1
         elif direction.upper() == "W" or "WEST":
-            self.positionx -=1
+            self.position[1] -=1
         else:
             return 0
 
+class NPC(Person):
+    def __init__(self):
+        self.messages = list
+
+class Enemy(Person):
+    def __init__(self):
+        self.attacks = list
+
+#############################related to items############################
+
 class Item:
     def __init__(self):
-        self.name = str()
-        self.statAffected = str()
-        self.value = int()
+        self.name = str
+        self.description = str
+        self.value = int
+
+class Weapon(Item):
+    def __init__(self):
+        self.damage = int
 
 class Map:
     def __init__(self):
-        self.size = list()
+        self.size = list
 
 class Terrain:
     def __init__(self,type):
         self.type = type
-        self.hidden = bool()
+        self.hidden = bool
         self.treasure = Item
 
 

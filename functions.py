@@ -50,4 +50,5 @@ def realityLoop(player,worldMap):
             print("You are in a " + worldMap.size[player.positionx][player.positiony].type)
 
 def determineTerrain(player,worldMap):
-    if worldMap.size[player.positionx][player.positiony].type =="":
+    if (worldMap.size[player.positionx][player.positiony].type) == "":
+        print("test")
