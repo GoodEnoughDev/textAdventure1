@@ -27,16 +27,6 @@ def playerSetup():
     player.weapon = input(player1.name + ", what is your weapon of choice? ")
     return player
 
-def initializeWorld(size):
-    worldMap = Map()
-    for i in range(int(size)*10):
-        worldMap.size.append([])
-        for i2 in range(int(size)*10):
-            worldMap.size[i].append(Terrain)
-    return worldMap
-
-# TODO: figure out how to determine terrain attributes
-
 def realityLoop(player,worldMap):
     firstRun = True
     exit = False
@@ -52,3 +42,15 @@ def realityLoop(player,worldMap):
 def determineTerrain(player,worldMap):
     if (worldMap.size[player.positionx][player.positiony].type) == "":
         print("test")
+
+
+def initializeWorld(size):
+    worldMap = Map()
+    for i in range(int(size)*10):
+        worldMap.size.append([])
+        for i2 in range(int(size)*10):
+            worldMap.size[i].append(Terrain)
+    return worldMap
+
+def generateMap():
+    
