@@ -5,7 +5,7 @@ class Person(object):
         self.name = str
         self.description = str
         self.isAlive = bool
-        self.position = list
+        self.position = []
         self.attacks = list
         self.items = list
         self.hp = int
@@ -53,7 +53,7 @@ class Weapon(Item):
 
 class Map:
     def __init__(self):
-        self.size = list
+        self.array = list
 
 class Terrain:
     def __init__(self,type):
