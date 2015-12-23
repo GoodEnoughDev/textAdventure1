@@ -1,9 +1,9 @@
 import os
 import time
-import random
 from classes import *
 import math
 import random
+
 
 terrainTypes = ["forrest","plain","road","dessert","mountain"]
 
@@ -76,4 +76,6 @@ def determineCommand(player, string):
             player.position[1] +=1
         elif words == "WEST":
             player.position[1] -=1
+   # elif words[0] == ("quit" or "exit"):
+        
 
