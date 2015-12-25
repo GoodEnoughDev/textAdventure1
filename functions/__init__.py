@@ -1,8 +1,11 @@
+#TODO: rearrange functions
+
 import os
 import time
 from classes import *
 import math
 import random
+import _pickle
 
 
 terrainTypes = ["forrest","plain","road","dessert","mountain"]
@@ -10,7 +13,25 @@ terrainTypes = ["forrest","plain","road","dessert","mountain"]
 def clearConsole():
     os.system('clear')
 
+def mainMenu():
+    print("Welcome to text adventure!\n\n\n")
+    #determine if there is a map file
+    if os.path.isfile("*.bin"):
+        print()
+        msg = input("[S]tart game or [C]ontinue game?")
+    else:
+        msg = input("[S]tart game?")
 
+    if msg.upper() == 'S':
+        player1 = playerSetup()
+        worldMap = Map()
+        worldMap.array = generateMap()
+        return player1,worldMap
+    elif msg.upper() == 'C':
+        # print files that end in .bin
+        loadGame()
+
+# initialize world
 def intro():
     print("You are about to embark on an adventure!")
     for i in range(5):
@@ -33,12 +54,13 @@ def playerSetup():
 
 
 
-def determineTerrain(player,worldMap):
-    if (worldMap.size[player.positionx][player.positiony].type) == "":
-        print("test")
+#def determineTerrain(player,worldMap):
+#    if (worldMap.size[player.positionx][player.positiony].type) == "":
+#        print("test")
 
 
-def generateMap(size):
+def generateMap():
+    size = input("How large is your world? (on a scale from 1 to 10: ")
     size = int(size) * 10
     mapArray = list()
     for i in range(size):
@@ -49,9 +71,9 @@ def generateMap(size):
     return mapArray
 
 def randomValue(value):
-    return 4 + (random.randrange(0,7) * math.sin(random.randrange(0,5) * value)) + (random.randrange(0,5) * math.sin(random.random() * value)) + (random.randrange(0,3) * math.sin(random.random() * value))
+    return 4 + (random.randrange(2,7) * math.sin(random.randrange(0,5) * value)) + (random.randrange(0,5) * math.sin(random.random() * value)) + (random.randrange(0,3) * math.sin(random.random() * value))
 
-
+#TODO: Possibly move this to the main file
 def realityLoop(player,worldMap):
     firstRun = False
     exit = False
@@ -62,9 +84,9 @@ def realityLoop(player,worldMap):
     else:
         while exit == False:
             print("You are in a " + worldMap.array[player.position[0]][player.position[1]].type)
-            determineCommand(player, input("Enter commands: "))
+            determineCommand(player, input("Enter commands: "),worldMap)
 
-def determineCommand(player, string):
+def determineCommand(player, string, worldMap):
     words = string.upper()
     words = words.split()
     if words[0] == "GO":
@@ -76,6 +98,16 @@ def determineCommand(player, string):
             player.position[1] +=1
         elif words == "WEST":
             player.position[1] -=1
+    elif words[0] == "SAVE":
+        saveGame(worldMap)
    # elif words[0] == ("quit" or "exit"):
         
+#TODO: finish save and load function
+def saveGame(map):
+    with open("map.dat", "wb") as f:
+        _pickle.dump(map, f)
 
+
+def loadGame():
+    with open("map.dat", "wb") as f:
+        _pickle.dump(map, f)

@@ -2,31 +2,36 @@ import csv
 import random
 import math
 
-map = list
+#map = list
 
-def generateMap(size):
-    mapArray = list()
-    for i in range(size):
-        mapArray.append([])
-        for i2 in range(size):
-            mapArray[i].append(int(randomValue(i+i2)))
-    for j in range(10):
-        for i in range(size):
-            for i2 in range(size):
-                if mapArray[i][i2] > 5:
-                    mapArray[i][i2] = int(mapArray[i][i2]/ 2)
 
-    return mapArray
+#map = generateMap(200)
 
-def randomValue(value):
-    return 4 + (random.randrange(0,7) * math.sin(random.randrange(0,5) * value)) + (random.randrange(0,5) * math.sin(random.random() * value)) + (random.randrange(0,3) * math.sin(random.random() * value))
+#with open('map.csv','w') as f:
+#    for sublist in map:
+#        for item in sublist:
+#            f.write(str(item) + ',')
+#        f.write('\n')
 
-map = generateMap(200)
+def numbers(n):
+    for i in range(2,1000):
+        if isPal(convertBase(n,i)):
+            return i
 
-with open('map.csv','w') as f:
-    for sublist in map:
-        for item in sublist:
-            f.write(str(item) + ',')
-        f.write('\n')
+def convertBase(number,base):
+    num = number
+    numString = ""
+    while (num > base):
+        numString = str(num % base) + numString
+        num = int(num/base)
+    numString = str(num) + numString
+    return numString
 
-print(map)
+def isPal(number):
+    for i in range(len(number)):
+        if number[0] == number[i]:
+            return True
+        else:
+            return False
+
+print(numbers(42))
