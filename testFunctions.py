@@ -1,6 +1,7 @@
 import csv
 import random
 import math
+import os
 
 #map = list
 
@@ -34,4 +35,12 @@ def isPal(number):
         else:
             return False
 
-print(numbers(42))
+#print(numbers(42))
+
+def getFiles():
+    files = os.listdir(os.curdir)
+    mapFiles = []
+    for item in files:
+        if item[-4:] == '.dat':
+            mapFiles.append(item[:-4])
+    return mapFiles

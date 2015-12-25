@@ -104,10 +104,19 @@ def determineCommand(player, string, worldMap):
         
 #TODO: finish save and load function
 def saveGame(map):
-    with open("map.dat", "wb") as f:
+    msg = input("Input the name of your world: ")
+    with open(msg + ".dat", "wb") as f:
         _pickle.dump(map, f)
 
 
 def loadGame():
     with open("map.dat", "wb") as f:
         _pickle.dump(map, f)
+
+def getFiles():
+    files = os.listdir(os.curdir)
+    mapFiles = []
+    for item in files:
+        if item[-4:] == '.dat':
+            mapFiles.append(item[:-4])
+    return mapFiles
