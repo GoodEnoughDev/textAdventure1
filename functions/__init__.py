@@ -16,7 +16,8 @@ def clearConsole():
 def mainMenu():
     print("Welcome to text adventure!\n\n\n")
     #determine if there is a map file
-    if os.path.isfile("*.bin"):
+    mapFiles = getFiles()
+    if mapFiles:
         print()
         msg = input("[S]tart game or [C]ontinue game?")
     else:
@@ -100,8 +101,8 @@ def determineCommand(player, string, worldMap):
             player.position[1] -=1
     elif words[0] == "SAVE":
         saveGame(worldMap)
-   # elif words[0] == ("quit" or "exit"):
-        
+    elif words[0] == ("quit" or "exit"):
+
 #TODO: finish save and load function
 def saveGame(map):
     msg = input("Input the name of your world: ")
@@ -109,9 +110,9 @@ def saveGame(map):
         _pickle.dump(map, f)
 
 
-def loadGame():
-    with open("map.dat", "wb") as f:
-        _pickle.dump(map, f)
+def loadGame(map):
+    with open(map + ".dat", "wb") as f:
+        _pickle.load(map, f)
 
 def getFiles():
     files = os.listdir(os.curdir)
