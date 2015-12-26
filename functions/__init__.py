@@ -15,7 +15,6 @@ def clearConsole():
 
 def mainMenu():
     print("Welcome to text adventure!\n\n\n")
-    #determine if there is a map file
     mapFiles = getFiles()
     if mapFiles:
         print()
@@ -29,8 +28,8 @@ def mainMenu():
         worldMap.array = generateMap()
         return player1,worldMap
     elif msg.upper() == 'C':
-        # print files that end in .bin
-        loadGame()
+        print(mapFiles)
+        loadGame(input("Choose a map to load"))
 
 # initialize world
 def intro():
@@ -85,6 +84,7 @@ def realityLoop(player,worldMap):
     else:
         while exit == False:
             print("You are in a " + worldMap.array[player.position[0]][player.position[1]].type)
+            print(player.position)
             determineCommand(player, input("Enter commands: "),worldMap)
 
 def determineCommand(player, string, worldMap):
@@ -102,6 +102,8 @@ def determineCommand(player, string, worldMap):
     elif words[0] == "SAVE":
         saveGame(worldMap)
     elif words[0] == ("quit" or "exit"):
+        #TODO: figure out how to quit
+        a=1
 
 #TODO: finish save and load function
 def saveGame(map):
