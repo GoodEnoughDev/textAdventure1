@@ -17,7 +17,6 @@ def mainMenu():
     repeat = True
     while repeat:
         if mapFiles:
-            print(mapFiles)
             msg = input("[S]tart game or [C]ontinue game?")
         else:
             msg = input("[S]tart game?")
@@ -92,7 +91,7 @@ def realityLoop(player,worldMap):
             exit = determineCommand(player, input("Enter commands: "),worldMap)
             print(exit)
 
-def determineCommand(player, string, worldMap):
+def determineCommand(player, string, worldMap,debug):
     words = string.upper()
     words = words.split()
     print(words)
