@@ -17,20 +17,26 @@ class Person(object):
         self.hp -= damage
 
 class Player(Person):
-
-    def move(self, direction):
-        if direction.upper() == "N" or "NORTH":
-            self.position[2] +=1
-        elif direction.upper() == "S" or "SOUTH":
-            self.position[2] -=1
-        elif direction.upper() == "E" or "EAST":
-            self.position[1] +=1
-        elif direction.upper() == "W" or "WEST":
-            self.position[1] -=1
+    def moveNorth(self,map):
+        if self.position[0] == len(map.array):
+            self.position[0] = self.position[0]
         else:
-            return 0
-
-
+            self.position[0] += 1
+    def moveSouth(self,map):
+        if self.position[0] == 0:
+            self.position[0] = self.position[0]
+        else:
+            self.position[0] -= 1
+    def moveWest(self,map):
+        if self.position[1] == 0:
+            self.position[1] = self.position[1]
+        else:
+            self.position[1] -= 1
+    def moveEast(self,map):
+        if self.position[1] == len(map.array[0][0]):
+            self.position[1] = self.position[1]
+        else:
+            self.position[1] -= 1
 
 class NPC(Person):
 

@@ -5,17 +5,23 @@
 # Start game will bring up player setup. Then move into the game loop.
 
 # Continue will list the available map files. The file chosen will load and start the game loop.
-#
-#
-#
-#
-#
-#
-#
-#
+
 
 from functions import *
 
-
+# intro()
 player1,worldMap = mainMenu()
-realityLoop(player1,worldMap)
+
+firstRun = False
+exit = False
+debug = True
+
+if firstRun == True:
+    # first run conditions
+    firstRun = False
+else:
+    while exit == False:
+        print("You are in a " + worldMap.array[player1.position[0]][player1.position[1]].type) if debug == True else False
+        print(player1.position)
+        exit = determineCommand(player1, input("Enter commands: "),worldMap,debug)
+

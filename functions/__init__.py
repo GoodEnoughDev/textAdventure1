@@ -8,28 +8,32 @@ import random
 import _pickle
 
 
-terrainTypes = ["forrest","plain","road","dessert","mountain"]
-
 def clearConsole():
     os.system('clear')
 
 def mainMenu():
     print("Welcome to text adventure!\n\n\n")
     mapFiles = getFiles()
-    if mapFiles:
-        print()
-        msg = input("[S]tart game or [C]ontinue game?")
-    else:
-        msg = input("[S]tart game?")
+    repeat = True
+    while repeat:
+        if mapFiles:
+            print(mapFiles)
+            msg = input("[S]tart game or [C]ontinue game?")
+        else:
+            msg = input("[S]tart game?")
 
-    if msg.upper() == 'S':
-        player1 = playerSetup()
-        worldMap = Map()
-        worldMap.array = generateMap()
-        return player1,worldMap
-    elif msg.upper() == 'C':
-        print(mapFiles)
-        loadGame(input("Choose a map to load"))
+        if msg.upper() == 'S':
+            player1 = playerSetup()
+            worldMap = Map()
+            worldMap.array = generateMap()
+            return player1,worldMap
+            repeat = False
+        elif msg.upper() == 'C':
+            print(mapFiles)
+            loadGame(input("Choose a map to load"))
+            repeat = False
+        else:
+            repeat == True
 
 # initialize world
 def intro():
@@ -85,25 +89,39 @@ def realityLoop(player,worldMap):
         while exit == False:
             print("You are in a " + worldMap.array[player.position[0]][player.position[1]].type)
             print(player.position)
-            determineCommand(player, input("Enter commands: "),worldMap)
+            exit = determineCommand(player, input("Enter commands: "),worldMap)
+            print(exit)
 
 def determineCommand(player, string, worldMap):
     words = string.upper()
     words = words.split()
+    print(words)
     if words[0] == "GO":
         if words[1] == "NORTH":
-            player.position[0] +=1
-        elif words == "SOUTH":
-            player.position[0] -=1
-        elif words == "EAST":
-            player.position[1] +=1
-        elif words == "WEST":
-            player.position[1] -=1
+            player.moveNorth(worldMap)
+            return False
+        elif words[1] == "SOUTH":
+            player.moveSouth(worldMap)
+            return False
+        elif words[1] == "EAST":
+            player.moveEast(worldMap)
+            return False
+        elif words[1] == "WEST":
+            player.moveWest(worldMap)
+            return False
+        else:
+            print("That is not a valid command")
     elif words[0] == "SAVE":
         saveGame(worldMap)
-    elif words[0] == ("quit" or "exit"):
-        #TODO: figure out how to quit
-        a=1
+        if input("Continue? ").upper() == ("YES" or "Y"):
+            return False
+        else:
+            return True
+    elif words[0] == ("QUIT" or "EXIT"):
+        return True
+    else:
+        print("That is not a valid command")
+        return False
 
 #TODO: finish save and load function
 def saveGame(map):
