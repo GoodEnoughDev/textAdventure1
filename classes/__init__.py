@@ -33,17 +33,17 @@ class Player(Person):
         else:
             self.position[1] -= 1
     def moveEast(self,map):
-        if self.position[1] == len(map.array[0][0]):
+        if self.position[1] == len(map.array[0]):
             self.position[1] = self.position[1]
         else:
-            self.position[1] -= 1
+            self.position[1] += 1
 
 class NPC(Person):
 
     def __init__(self):
         self.messages = list
 
-#############################related to items############################
+##############related to items############################
 
 class Item(object):
 
