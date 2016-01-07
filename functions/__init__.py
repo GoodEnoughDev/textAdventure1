@@ -1,4 +1,5 @@
-#TODO: rearrange functions
+# TODO: rearrange functions
+
 
 import os
 import time
@@ -10,6 +11,7 @@ import _pickle
 
 def clearConsole():
     os.system('clear')
+
 
 def mainMenu():
     print("Welcome to text adventure!\n\n\n")
@@ -25,16 +27,16 @@ def mainMenu():
             player1 = playerSetup()
             worldMap = Map()
             worldMap.array = generateMap()
-            return player1,worldMap
+            return player1, worldMap
             repeat = False
         elif msg.upper() == 'C':
             print(mapFiles)
             loadGame(input("Choose a map to load"))
             repeat = False
         else:
-            repeat == True
+            repeat = True
 
-# initialize world
+
 def intro():
 
     print("You are about to embark on an adventure!")
@@ -65,15 +67,15 @@ def generateMap():
         mapArray.append([])
         for i2 in range(size):
             mapArray[i].append(Terrain("Forest"))
-
     return mapArray
+
 
 def randomValue(value):
     # returns a sudo random value that follows a sine wave series in order to simulate a landscape.
-    return 4 + (random.randrange(2,7) * math.sin(random.randrange(0,5) * value)) + (random.randrange(0,5) * math.sin(random.random() * value)) + (random.randrange(0,3) * math.sin(random.random() * value))
+    return 4 + (random.randrange(2, 7) * math.sin(random.randrange(0, 5) * value)) + (random.randrange(0, 5) * math.sin(random.random() * value)) + (random.randrange(0, 3) * math.sin(random.random() * value))
 
 
-def determineCommand(player, string, worldMap,debug):
+def determineCommand(player, string, worldMap, debug):
     words = string.upper()
     words = words.split()
     print(words)
@@ -112,11 +114,12 @@ def saveGame(map):
 
 
 def loadGame(mapName):
-    #TODO: fix this
+    # TODO: fix this
     map = mapName + ".dat"
     print(map)
     with open(map, "wb") as f:
         _pickle.load(map, f)
+
 
 def getFiles():
     files = os.listdir(os.curdir)

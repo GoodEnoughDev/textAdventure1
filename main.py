@@ -16,12 +16,12 @@ firstRun = True
 exitGame = False
 debug = True
 
-if firstRun == True:
+if firstRun:
     # first run conditions
     firstRun = False
 else:
-    while exitGame == False:
-        print("You are in a " + worldMap.array[player1.position[0]][player1.position[1]].type) if debug == True else False
+    while not exitGame:
+        print("You are in a " + worldMap.array[player1.position[0]][player1.position[1]].type) if debug else False
         print(player1.position)
         exitGame = determineCommand(player1, input("Enter commands: "), worldMap, debug)
 

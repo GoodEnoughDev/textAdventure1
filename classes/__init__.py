@@ -1,6 +1,8 @@
 ############################related to people############################
-class Person(object):
 
+
+# noinspection PyPep8Naming
+class Person(object):
     def __init__(self):
         self.name = str
         self.description = str
@@ -16,6 +18,8 @@ class Person(object):
     def takeDamage(self, damage):
         self.hp -= damage
 
+
+# noinspection PyPep8Naming
 class Player(Person):
 
     def moveNorth(self, map):
@@ -31,24 +35,29 @@ class Player(Person):
             self.position[0] = self.position[0]
         else:
             self.position[0] -= 1
+
     def moveWest(self, map):
 
         if self.position[1] == 0:
             self.position[1] = self.position[1]
         else:
             self.position[1] -= 1
+
     def moveEast(self, map):
         if self.position[1] == len(map.array[0]):
             self.position[1] = self.position[1]
         else:
             self.position[1] += 1
 
+
 class NPC(Person):
 
     def __init__(self):
+        super().__init__()
         self.messages = list
 
 ##############related to items############################
+
 
 class Item(object):
 
@@ -57,14 +66,18 @@ class Item(object):
         self.description = str
         self.value = int
 
+
 class Weapon(Item):
 
     def __init__(self):
+        super().__init__()
         self.damage = int
+
 
 class Map:
     def __init__(self):
         self.array = list
+
 
 class Terrain:
     def __init__(self, type):
@@ -73,10 +86,13 @@ class Terrain:
         self.treasure = Item
 
 #############################related to attacks############################
+
+
 class Attack:
     def __init__(self):
         self.name = str
         self.description = str
         self.damage = int
+
 
 # TODO: create a class to hold all relavent data for a given save file (EG. name of save file, path to save file, map array, and character data).
