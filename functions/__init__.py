@@ -36,6 +36,7 @@ def mainMenu():
 
 # initialize world
 def intro():
+
     print("You are about to embark on an adventure!")
     for i in range(5):
         print(".")
@@ -56,12 +57,6 @@ def playerSetup():
     return player
 
 
-
-#def determineTerrain(player,worldMap):
-#    if (worldMap.size[player.positionx][player.positiony].type) == "":
-#        print("test")
-
-
 def generateMap():
     size = input("How large is your world? (on a scale from 1 to 10: ")
     size = int(size) * 10
@@ -74,22 +69,9 @@ def generateMap():
     return mapArray
 
 def randomValue(value):
+    # returns a sudo random value that follows a sine wave series in order to simulate a landscape.
     return 4 + (random.randrange(2,7) * math.sin(random.randrange(0,5) * value)) + (random.randrange(0,5) * math.sin(random.random() * value)) + (random.randrange(0,3) * math.sin(random.random() * value))
 
-#TODO: Possibly move this to the main file
-def realityLoop(player,worldMap):
-    firstRun = False
-    exit = False
-
-    if firstRun == True:
-        # first run conditions
-        firstRun = False
-    else:
-        while exit == False:
-            print("You are in a " + worldMap.array[player.position[0]][player.position[1]].type)
-            print(player.position)
-            exit = determineCommand(player, input("Enter commands: "),worldMap)
-            print(exit)
 
 def determineCommand(player, string, worldMap,debug):
     words = string.upper()
@@ -122,7 +104,7 @@ def determineCommand(player, string, worldMap,debug):
         print("That is not a valid command")
         return False
 
-#TODO: finish save and load function
+
 def saveGame(map):
     msg = input("Input the name of your world: ")
     with open(msg + ".dat", "wb") as f:
@@ -130,6 +112,7 @@ def saveGame(map):
 
 
 def loadGame(mapName):
+    #TODO: fix this
     map = mapName + ".dat"
     print(map)
     with open(map, "wb") as f:
