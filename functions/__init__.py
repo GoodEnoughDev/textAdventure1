@@ -129,8 +129,10 @@ def saveGame(map):
         _pickle.dump(map, f)
 
 
-def loadGame(map):
-    with open(map + ".dat", "wb") as f:
+def loadGame(mapName):
+    map = mapName + ".dat"
+    print(map)
+    with open(map, "wb") as f:
         _pickle.load(map, f)
 
 def getFiles():

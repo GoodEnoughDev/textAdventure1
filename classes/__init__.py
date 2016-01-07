@@ -74,3 +74,4 @@ class Attack:
         self.description = str
         self.damage = int
 
+#TODO: create a class to hold all relavent data for a given save file (EG. name of save file, path to save file, map array, and character data).
