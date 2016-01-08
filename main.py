@@ -10,7 +10,7 @@
 from functions import *
 
 # intro()
-player1, worldMap = mainMenu()
+player1, world_map = main_menu()
 
 firstRun = False
 exitGame = False
@@ -21,7 +21,7 @@ if firstRun:
     firstRun = False
 else:
     while not exitGame:
-        print("You are in a " + worldMap.array[player1.position[0]][player1.position[1]].type) if debug else False
+        print("You are in a " + world_map.array[player1.position[0]][player1.position[1]].type) if debug else False
         print(player1.position)
-        exitGame = determineCommand(player1, input("Enter commands: "), worldMap, debug)
+        exitGame = determine_command(player1, input("Enter commands: ").upper(), world_map, debug)
 

@@ -9,25 +9,25 @@ import random
 import _pickle
 
 
-def clearConsole():
+def clear_console():
     os.system('clear')
 
 
-def mainMenu():
+def main_menu():
     print("Welcome to text adventure!\n\n\n")
-    mapFiles = getFiles()
+    map_files = get_files()
     repeat = True
     while repeat:
-        if mapFiles:
+        if map_files:
             msg = input("[S]tart game or [C]ontinue game?")
         else:
             msg = input("[S]tart game?")
 
         if msg.upper() == 'S':
-            player1 = playerSetup()
-            worldMap = Map()
-            worldMap.array = generateMap()
-            return player1, worldMap
+            player1 = player_setup()
+            world_map = Map()
+            world_map.array = generate_map()
+            return player1, world_map
             repeat = False
         elif msg.upper() == 'C':
             print(mapFiles)
@@ -50,7 +50,7 @@ def intro():
     print("\nBefore you embark I need to know a little bit about you...")
 
 
-def playerSetup():
+def player_setup():
     player = Player()
     player.name = input("What is your name? ")
     player.weapon = input(player.name + ", what is your weapon of choice? ")
@@ -61,43 +61,47 @@ def playerSetup():
 # TODO: move playerSetup() into player class
 
 
-def generateMap():
+def generate_map():
     size = input("How large is your world? (on a scale from 1 to 10: ")
     size = int(size) * 10
-    mapArray = list()
+    map_array = list()
     for i in range(size):
-        mapArray.append([])
+        map_array.append([])
         for i2 in range(size):
-            mapArray[i].append(Terrain("Forest"))
-    return mapArray
+            map_array[i].append(Terrain("Forest"))
+    return map_array
 
 
-def randomValue(value):
+def random_value(value):
     # returns a sudo random value that follows a sine wave series in order to simulate a landscape.
     return 4 + (random.randrange(2, 7) * math.sin(random.randrange(0, 5) * value)) + (random.randrange(0, 5) * math.sin(random.random() * value)) + (random.randrange(0, 3) * math.sin(random.random() * value))
 
 
-def determineCommand(player, string, worldMap, debug):
+def determine_command(player, string, world_map, debug):
     words = string.upper()
     words = words.split()
     print(words)
     if words[0] == "GO":
         if words[1] == "NORTH":
-            player.moveNorth(worldMap)
+            print('You have gone NORTH.')
+            player.moveNorth(world_map)
             return False
         elif words[1] == "SOUTH":
-            player.moveSouth(worldMap)
+            print('You have gone SOUTH')
+            player.moveSouth(world_map)
             return False
         elif words[1] == "EAST":
-            player.moveEast(worldMap)
+            print('You have gone EAST')
+            player.moveEast(world_map)
             return False
         elif words[1] == "WEST":
-            player.moveWest(worldMap)
+            print('You have gone WEST')
+            player.moveWest(world_map)
             return False
         else:
             print("That is not a valid command")
     elif words[0] == "SAVE":
-        saveGame(worldMap)
+        save_game(world_map)
         if input("Continue? ").upper() == ("YES" or "Y"):
             return False
         else:
@@ -109,24 +113,24 @@ def determineCommand(player, string, worldMap, debug):
         return False
 
 
-def saveGame(map):
+def save_game(map):
     msg = input("Input the name of your world: ")
     with open(msg + ".dat", "wb") as f:
         _pickle.dump(map, f)
 
 
-def loadGame(mapName):
+def load_game(map_name):
     # TODO: fix this
-    map = mapName + ".dat"
+    map = map_name + ".dat"
     print(map)
     with open(map, "wb") as f:
         _pickle.load(map, f)
 
 
-def getFiles():
+def get_files():
     files = os.listdir(os.curdir)
-    mapFiles = []
+    map_files = []
     for item in files:
         if item[-4:] == '.dat':
-            mapFiles.append(item[:-4])
-    return mapFiles
+            map_files.append(item[:-4])
+    return map_files
