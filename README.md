@@ -4,7 +4,7 @@ An attempt at creating a text adventure game. Mostly as a programming exercise a
 
 test
 
-!!__new test new       test__!!
+!!__new test new    test   test__!!
 
 A test at pushing to GitHub.
 
