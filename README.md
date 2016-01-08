@@ -5,3 +5,6 @@ An attempt at creating a text adventure game. Mostly as a programming exercise a
 !!__new test new test__!!
 
 A test at pushing to GitHub.
+
+kljhlkjhl
+kjlhlkj
