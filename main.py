@@ -12,7 +12,7 @@ from functions import *
 # intro()
 player1, worldMap = mainMenu()
 
-firstRun = True
+firstRun = False
 exitGame = False
 debug = True
 
