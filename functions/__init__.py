@@ -58,6 +58,8 @@ def playerSetup():
     player.position.append(3)
     return player
 
+# TODO: move playerSetup() into player class
+
 
 def generateMap():
     size = input("How large is your world? (on a scale from 1 to 10: ")
