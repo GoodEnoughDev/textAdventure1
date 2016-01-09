@@ -96,3 +96,11 @@ class Attack:
 
 
 # TODO: create a class to hold all relavent data for a given save file (EG. name of save file, path to save file, map array, and character data).
+class SaveFile:
+    def __init__(self,name, player, world):
+        name = name
+        path = str
+        player = player
+        world = world
+
+
