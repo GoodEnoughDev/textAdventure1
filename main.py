@@ -14,7 +14,7 @@ player1, world_map = main_menu()
 
 firstRun = False
 exitGame = False
-debug = False
+debug = True
 
 if firstRun:
     # first run conditions
