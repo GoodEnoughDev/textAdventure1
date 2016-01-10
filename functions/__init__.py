@@ -82,19 +82,19 @@ def determine_command(player, string, world_map, debug):
     words = words.split()
     print(words)
     if words[0] == "GO":
-        if words[1] == "NORTH":
+        if words[1] == ("NORTH" or "N"):
             print('You have gone NORTH.')
             player.moveNorth(world_map)
             return False
-        elif words[1] == "SOUTH":
+        elif words[1] == ("SOUTH" or "S"):
             print('You have gone SOUTH')
             player.moveSouth(world_map)
             return False
-        elif words[1] == "EAST":
+        elif words[1] == ("EAST" or "E"):
             print('You have gone EAST')
             player.moveEast(world_map)
             return False
-        elif words[1] == "WEST":
+        elif words[1] == ("WEST" or "W"):
             print('You have gone WEST')
             player.moveWest(world_map)
             return False
