@@ -7,6 +7,7 @@ from classes import *
 import math
 import random
 import _pickle
+from noise import noise2
 
 
 def clear_console():
@@ -72,6 +73,9 @@ def generate_map():
     return map_array
 
 
+
+pnoise1(2, octaves=1, persistence=0.5, lacunarity=2.0, repeat=1024, base=0.0)
+
 def random_value(value):
     # returns a sudo random value that follows a sine wave series in order to simulate a landscape.
     return 4 + (random.randrange(2, 7) * math.sin(random.randrange(0, 5) * value)) + (random.randrange(0, 5) * math.sin(random.random() * value)) + (random.randrange(0, 3) * math.sin(random.random() * value))
@@ -134,3 +138,6 @@ def get_files():
         if item[-4:] == '.dat':
             map_files.append(item[:-4])
     return map_files
+
+
+map_array[y].append(int((snoise2(x / freq, y / freq, octaves) * 127.0 + 64.0) / 10))
