@@ -82,21 +82,21 @@ def determine_command(player, string, world_map, debug):
     words = words.split()
     print(words)
     if words[0] == "GO":
-        if words[1] == ("NORTH" or "N"):
+        if words[1] in ('NORTH', 'N'):
             print('You have gone NORTH.')
-            player.moveNorth(world_map)
+            player.move_north(world_map)
             return False
-        elif words[1] == ("SOUTH" or "S"):
+        elif words[1] in ('SOUTH', 'S'):
             print('You have gone SOUTH')
-            player.moveSouth(world_map)
+            player.move_south(world_map)
             return False
-        elif words[1] == ("EAST" or "E"):
+        elif words[1] in ('EAST', 'E'):
             print('You have gone EAST')
-            player.moveEast(world_map)
+            player.move_east(world_map)
             return False
-        elif words[1] == ("WEST" or "W"):
+        elif words[1] in ('WEST', 'W'):
             print('You have gone WEST')
-            player.moveWest(world_map)
+            player.move_west(world_map)
             return False
         else:
             print("That is not a valid command")
@@ -106,7 +106,7 @@ def determine_command(player, string, world_map, debug):
             return False
         else:
             return True
-    elif words[0] == ("QUIT" or "EXIT"):
+    elif words[0] in ('QUIT', 'EXIT'):
         return True
     else:
         print("That is not a valid command")

@@ -23,5 +23,5 @@ else:
     while not exitGame:
         print("You are in a " + world_map.array[player1.position[0]][player1.position[1]].type) if debug else False
         print(player1.position)
-        exitGame = determine_command(player1, input("Enter commands: ").upper(), world_map, debug)
+        exitGame = determine_command(player1, input("Enter commands: "), world_map, debug)
 

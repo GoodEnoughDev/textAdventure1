@@ -19,31 +19,47 @@ class Person(object):
         self.hp -= damage
 
 
-# noinspection PyPep8Naming
+class Enemy(object):
+    def __init__(self):
+        self.name = str
+        self.description = str
+        self.isAlive = bool
+        self.attacks = list
+        self.items = list
+        self.hp = int
+        self.mp = int
+        self.strength = int
+        self.defense = int
+
+    def take_damage(self, damage):
+        self.hp -= damage
+
+
+# noinspection PyPep8Nami ng
 class Player(Person):
 
-    def moveNorth(self, map):
+    def move_north(self, map):
 
         if self.position[0] == len(map.array):
             self.position[0] = self.position[0]
         else:
             self.position[0] += 1
 
-    def moveSouth(self, map):
+    def move_south(self, map):
 
         if self.position[0] == 0:
             self.position[0] = self.position[0]
         else:
             self.position[0] -= 1
 
-    def moveWest(self, map):
+    def move_west(self, map):
 
         if self.position[1] == 0:
             self.position[1] = self.position[1]
         else:
             self.position[1] -= 1
 
-    def moveEast(self, map):
+    def move_east(self, map):
         if self.position[1] == len(map.array[0]):
             self.position[1] = self.position[1]
         else:
